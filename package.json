@@ -1,0 +1,48 @@
+{
+  "name": "social-media-trend-graphs-package",
+  "version": "1.0.0",
+  "description": "package for social media trend graphs",
+  "private": true,
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "d3": "^5.9.7",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "http-proxy-middleware": "^0.19.1",
+    "install": "^0.13.0",
+    "node-sass": "^4.12.0",
+    "npm": "^6.10.3",
+    "sass-loader": "^7.2.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open"
+  },
+  "author": "Andrew Lu <andrew.lu99@gmail.com>",
+  "license": "ISC"
+}

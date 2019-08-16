@@ -1,0 +1,23 @@
+.Landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .title {
+        margin-bottom: 30px;
+    }
+
+    .link-box {
+        border: 1px solid blue;
+        background-color: #bfd8ff;
+        width: 400px;
+        height: 100px;
+        padding: 10px 10px 0px 10px;
+        margin-bottom: 10px;
+        text-align: center;
+
+        .description {
+            margin-top: 10px;
+        }
+    }
+}
