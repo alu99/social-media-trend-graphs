@@ -1,5 +1,5 @@
 # social-media-trend-graphs
-Counts keywords mentioned on various social media sites and graphs them over time. React, Webpack, Flask. 
+Counts keywords mentioned on various social media sites and graphs them as a function of time. React, Webpack, Flask. 
 
 ### Technical Info
 * Front-end hosted by webpack dev server on `localhost:8080`
