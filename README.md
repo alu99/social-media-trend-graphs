@@ -6,13 +6,13 @@ Counts keywords mentioned on various social media sites and graphs them as a fun
 * Back-end Flask server on `localhost:5000`
 * Flask endpoints hit the social media site's API to search for keyword. Returns data to front end.
 * Graphs implemented using `HTML Canvas` (for drawing graph components) and `d3-scale` (for sizing and positioning data points and graph components relative to the canvas)
-* Planning on configuring Flask and webpack for production mode and hosting site on Github pages
 * Planning on adding tooltips that appear when hovering over data points that give more info about the occurences of that time period
+* Planning on configuring Flask and webpack for production mode and hosting site on Github pages
 * Currently only have trend graphs for Reddit. Trend graphs for other social media platforms coming soon!
 
 ### Trend Graphs for Reddit
 * In this example, we search for the keyword "Maryland" (go terps!) in the subreddit "r/collegebasketball"
-* We can group the data points by days, weeks, months, and years to improve the readibility of the data
+* We can group the data points by days, weeks, months, or years to improve the readibility of the data
 * Reddit API only allows us to query the past 100 posts. Because of this, most keywords will only yield a graph covering the recent past instead of all time
 
 * Grouped by days:
