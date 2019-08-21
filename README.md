@@ -12,13 +12,13 @@ Counts keywords mentioned on various social media sites and graphs them as a fun
 
 ### Trend Graphs for Reddit
 * In this example, we search for the keyword "Maryland" (go terps!) in the subreddit "r/collegebasketball"
-* We can group the data points by days, weeks, months, or years to improve the readibility of the data
+* We can group the data points by days, weeks, months, or years to improve the readability of the data
 * Reddit API only allows us to query the past 100 posts. Because of this, most keywords will only yield a graph covering the recent past instead of all time
 
 * Grouped by days:
 ![image](https://user-images.githubusercontent.com/13570258/63402679-44f0d000-c3aa-11e9-925f-43819cba314e.png)
 
-* Grouped by weeks (this is the most readible option):
+* Grouped by weeks (this is the most readable option):
 ![image](https://user-images.githubusercontent.com/13570258/63402940-4078e700-c3ab-11e9-88f3-8d46e5136952.png)
 
 * Grouped by months:
