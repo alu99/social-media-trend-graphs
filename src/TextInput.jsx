@@ -14,7 +14,7 @@ const TextInput = ({
                 placeholder={placeholder}
                 onChange={onChange}
             >
-                </input>
+            </input>
         </div>
     );
 };

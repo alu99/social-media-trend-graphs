@@ -11,15 +11,6 @@ const Landing = () => {
                 <Link to="/reddit" className='link'>Reddit</Link>
                 <div className='description'>A graph that displays the number of Reddit posts that have a keyword in the title or comments</div>
             </div>
-            <div className='link-box'>
-                <Link to="/reddit">Test</Link>
-                <div className='description'>A graph that displays the number of Reddit posts that have a keyword in the title or comments</div>
-            </div>
-            <div className='link-box'>
-                <Link to="/reddit">Test2</Link>
-                <div className='description'>A graph that displays the number of Reddit posts that have a keyword in the title or comments</div>
-            </div>
-
         </div>
     );
 };

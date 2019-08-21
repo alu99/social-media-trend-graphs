@@ -1,6 +1,9 @@
 import React from 'react';
 import LineGraph from './LineGraph.jsx';
 import TextInput from './TextInput.jsx';
+import GroupBySelector from './GroupBySelector.jsx';
+import NumericalInput from './NumericalInput.jsx';
+import { Link } from "react-router-dom";
 import moment from 'moment';
 
 import './RedditPage.scss';
@@ -11,33 +14,58 @@ class RedditPage extends React.Component {
         super(props);
         this.state = {
             data: [],
-            subredditInputValue: 'r/collegebasketball',
-            keyword: 'maryland',
+            subreddit: '',
+            keyword: '',
+            groupBy: 'days',
+            limit: 100,
+            lastSearchedSubreddit: '',
+            lastSearchedKeyword: '',
+            lastSearchedLimit: '',
         }
         fetch('http://localhost:5000/api/reddit-authenticate');
     }
 
-    onSubredditInputValueChange = event => this.setState({ subredditInputValue: event.target.value });
+    onSubredditChange = event => this.setState({ subreddit: event.target.value });
 
     onKeywordValueChange = event => this.setState({ keyword: event.target.value });
 
+    onLimitChange = newValue => this.setState({ limit: newValue });
+
+
     onSubmitClicked = () => {
-        console.log(JSON.stringify({
-            keyword: this.state.keyword,
-            subreddit: this.state.subredditInputValue,
-        }))
+        const {
+            subreddit,
+            keyword,
+            limit,
+        } = this.state;
+
+        if(subreddit === '' || keyword === '') {
+            alert('Invalid search criteria');
+            return;
+        }
         fetch('http://localhost:5000/api/get-reddit-search-data', {
             method: 'POST',
             body: JSON.stringify({
-                keyword: this.state.keyword,
-                subreddit: this.state.subredditInputValue,
+                keyword: keyword,
+                subreddit: subreddit,
+                limit: limit,
             }),
             headers: {
                 'Content-Type': 'application/json',
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
         }).then(searchDataPromise => {
-            searchDataPromise.json().then(result => this.setState({ data: result }));
+            searchDataPromise.json().then(results => {
+                const dataConvertedToMoment = results.map(datum => ({
+                    ...datum,
+                    timestamp: moment(datum.timestamp),
+                }));
+                this.setState({
+                    data: dataConvertedToMoment,
+                    lastSearchedSubreddit: subreddit,
+                    lastSearchedKeyword: keyword,
+                    lastSearchedLimit: limit.toString(),
+                });
+            });
         })
     }
 
@@ -46,24 +74,25 @@ class RedditPage extends React.Component {
         const {
             data,
             keyword,
-            subredditInputValue,
+            subreddit,
+            groupBy,
+            limit,
+            lastSearchedSubreddit,
+            lastSearchedKeyword,
+            lastSearchedLimit,
         } = this.state;
-        if (data.length > 0) {
-            console.log(data)
-            console.log(typeof data[0].timestamp)
-            console.log(moment(data[0].timestamp).diff(data[1].timestamp, 'days'))
-        }
+
         return (
             <div className='RedditPage'>
                 <div className='title'>Trend Graph for Reddit</div>
-
+                <Link to="/" className='link'>Return Home</Link>
                 <div className='input-row'>
                     <span className='input-span'>
                         <div>Subreddit: </div>
                         <TextInput
-                            value={subredditInputValue}
+                            value={subreddit}
                             placeholder={'r/collegebasketball'}
-                            onChange={this.onSubredditInputValueChange}
+                            onChange={this.onSubredditChange}
                         />
                     </span>
                     <span className='input-span'>
@@ -74,6 +103,14 @@ class RedditPage extends React.Component {
                             onChange={this.onKeywordValueChange}
                         />
                     </span>
+                    <span className='input-span'>
+                        <div>Results: </div>
+                        <NumericalInput
+                            value={limit}
+                            placeholder={'Max of 100'}
+                            onChange={this.onLimitChange}
+                        />
+                    </span>
                     <button
                         type='button'
                         className='submit-button'
@@ -82,7 +119,23 @@ class RedditPage extends React.Component {
                         </button>
                 </div>
                 {data.length > 0 &&
-                    <LineGraph data={data} />
+                    <div className='graph-container'>
+                        <GroupBySelector
+                            value={groupBy}
+                            onChange={event => this.setState({groupBy: event.target.value})}
+                        />
+                        <div className='graph-title'>
+                            Occurences of "{lastSearchedKeyword}" in {lastSearchedSubreddit} over the last {lastSearchedLimit} results
+                        </div>
+                        <LineGraph
+                            data={data}
+                            width={1200}
+                            height={550}
+                            pointColor={'#FF5700'}
+                            axisColor={'black'}
+                            groupBy={groupBy}
+                        />
+                    </div>
                 }
             </div>
         )
