@@ -18,7 +18,7 @@ Counts keywords mentioned on various social media sites and graphs them as a fun
 * Grouped by days:
 ![image](https://user-images.githubusercontent.com/13570258/63402679-44f0d000-c3aa-11e9-925f-43819cba314e.png)
 
-* Grouped by weeks (this is the most readable option):
+* Grouped by weeks (this is the most readable option). As you can see, the number of posts containing "Maryland" spiked in mid-March when they played Belmont and LSU in the NCAA tournament:
 ![image](https://user-images.githubusercontent.com/13570258/63402940-4078e700-c3ab-11e9-88f3-8d46e5136952.png)
 
 * Grouped by months:
